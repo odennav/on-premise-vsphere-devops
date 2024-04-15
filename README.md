@@ -3,7 +3,7 @@
 
 Automate your Self-hosted vSphere datacenter and deploy a fully load-balanced application with Docker, Gogs, Ansible, Vault, Packer, Terraform and Jenkins.
 
-![](https://github.com/odennav/on-prem-devops-vsphere/blob/main/docs/pipeline.png)
+![](https://github.com/odennav/on-prem-devops-vsphere/blob/main/docs/vcenter.png)
 
 ## Prerequisites
   
