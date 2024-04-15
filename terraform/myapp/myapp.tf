@@ -79,7 +79,7 @@ resource "vsphere_virtual_machine" "ws" {
           timeout = 0
           linux_options {
               host_name = "${var.computer_prefix}0${count.index + 1}"
-              domain = "hearn.labs"
+              domain = "odennav.labs"
           }
 
           network_interface {
@@ -151,7 +151,7 @@ resource "vsphere_virtual_machine" "lb" {
           timeout = 0
           linux_options {
               host_name = "lb01"
-              domain = "hearn.labs"
+              domain = "odennav.labs"
           }
 
           network_interface {
