@@ -7,12 +7,11 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
 ## Prerequisites
   
   - Deploy self hosted vSphere datacenter and datacenter cluster with 2 ESXi hosts
-  - Ensure vSphere HA, vSphere DRS
-  - Deploy datastore cluster and enable Storage DRS
-  - Provision a build machine on 1st ESXi host with Ubuntu OS.
+  - Enable vSphere HA and vSphere DRS
+  - Create datastore cluster and enable Storage DRS
+  - Provision a build machine on 1st ESXi host with Ubuntu 20.04
   - Git bash or linux terminal on local machine.
 
-  Check this repository here for detailed guide
 
 
 # Getting Started
