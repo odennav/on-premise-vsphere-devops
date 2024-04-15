@@ -1,10 +1,10 @@
 
 # On-Prem DevOps with VMware vSphere
 
-Automate your self-hosted vSphere datacenter and deploy a fully load-balanced application with docker, gogs, ansible, vault, packer, terraform and  jenkins.
+Automate your self-hosted vSphere datacenter and deploy a fully load-balanced application with Docker, Gogs, Ansible, Vault, Packer, Terraform and Jenkins.
 
 
-# Prerequisites
+## Prerequisites
   
   - Deploy self hosted vSphere datacenter and datacenter cluster with 2 ESXi hosts
   - Ensure vSphere HA, vSphere DRS
@@ -22,7 +22,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
   - Automated Pipeline
 
 
-# Manual Pipeline
+## Manual Pipeline
 
   This workflow involves the following steps:
   - Docker Installation
@@ -50,6 +50,8 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
     ```
     
     Add the repository to Apt sources:
+    
+    ```bash
     echo \
     "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
     $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
@@ -57,12 +59,13 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
     sudo apt-get update
     ```
 
-    To install the latest version, run:
+    To install the latest version:
+    
     ```bash
     sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin.
     ```
     
-    Verify that the Docker Engine installation is successful by running the hello-world image.
+    Verify that the Docker Engine installation is successful by running the `hello-world` image.
     ```bash
     sudo docker run hello-world
     ```
@@ -95,44 +98,42 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
 
     It is important to map the SSH service from the container to the host and set the appropriate SSH Port and URI settings when setting up Gogs for the first time. 
 
-    To access and clone Git repositories with the above configuration you would use: `git clone ssh://git@192.168.149.8:10022/odennav/on-prem-devops-vsphere.git`
-    
+    To access and clone Git repositories with the above configuration you would use: 
+    ```bash
+    git clone ssh://git@192.168.149.8:10022/odennav/on-prem-devops-vsphere.git
+    ```
+
     Files will be store in local path of build-machine instance,  /opt/gogs in my case.
     
 
-    First-Time Run Installation
-    `Install gogs with mysqllite3 (not for production), try postgresql instead`
-    `confirm ui access on browser` 
-    `create repo page called "on-prem-devops-vsphere" `
-    `create same repo page on local machine, not the build-machine`
-    `configure global config parameters`
+    For first-time run installation, install gogs with mysqllite3 
 
     Initialize local repository and create README
-    ```console
+    ```bash
     git init
     touch README.md
     echo "Hello Gogs!" > README.md
     ```
 
-    ```console
+    ```bash
     git config --global user.email "odennav@odennav.com"
     git config --global user.name "odennav"
     git config --global credentials.helper store
     ```
    
     Add all changes to staging area and commit
-    ```console
+    ```bash
     git add .
     git commit -m "first commit"
     ```
 
     Connect local repo with remote repository
-    ```console
+    ```bash
     git remote add origin https://192.168.149.8:3880/odennav/on-prem-devops-vsphere.git
     ```
 
     Push commits to remote repository
-    ```console
+    ```bash
     git push -u origin master
     ```
 
@@ -160,16 +161,17 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
     Push secure credentials and store.`
     Pull secure credentials through an API for an app at runtime.
 
-
-   `Login to build-machine`
+    
     Install the HashiCorp GPG key, verify the key's fingerprint, and install Vault.
-
+    
     Update the package manager and install GPG and wget.
-[O    ```bash
+    
+    ```bash
     sudo apt update && sudo apt install gpg wget
     ```
 
     Download the keyring
+    
     ```bash
     wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
     ```
@@ -196,7 +198,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
     ```
 
 
-    **Configure vault**
+    **Configure Vault**
 
     Create directory path for vault
     ```bash
@@ -244,17 +246,17 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
     ```
     
     Generate Unseal keys and Root token
-    ```console
+    ```bash
     vault operator init
     ```    
 
     Verify the server is running
-    ```console
+    ```bash
     vault status
-    ```console
-  
+    ```
 
     Start Unseal process with Unseal Key 1
+    
     ```bash
     vault operator unseal
     ```
@@ -264,6 +266,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
     **Vault policy requirements**
 
      it is recommended that root tokens are only used for just enough initial setup or in emergencies.
+    
      As a best practice, use tokens with appropriate set of policies based on your role in the organization.   
 
      **Write a Vault Policy**
@@ -278,6 +281,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
   
      ```bash  
      tee admin-policy.hcl <<EOF
+     
      # Read system health check
      path "sys/health"
      {
@@ -338,13 +342,15 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
        capabilities = ["read"]
      }
      EOF
-
+     ```
 
      **Create admin policy**
      
      Create a policy named admin with the policy defined in admin-policy.hcl
+     
      ```bash
      vault policy write admin admin-policy.hcl
+     ```
 
      **Display New Policy**
    
@@ -361,9 +367,12 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
 
      **Create new token**
      
-     Create a token with the admin policy attached and store the token in the variable ADMIN_TOKEN
+     Create a token with the admin policy attached and store the token in the variable `ADMIN_TOKEN`
+
+     ```bash
      ADMIN_TOKEN=$(vault token create -format=json -policy="admin" | jq -r ".auth.client_token")
-     
+     ```
+
      Display the `ADMIN_TOKEN`
      ```bash
      echo $ADMIN_TOKEN
@@ -382,7 +391,9 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
      ```    
      
     Append environment variables to `.profile`
+    
     Ensure they're automatically set up and available in every new shell session.
+    
     Fill in your ADMIN_TOKEN
     ```bash
     cat << EOF | sudo tee -a ~/.profile
@@ -393,6 +404,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
     ```
 
     **Create KV secrets engine**
+    
     Enable the key/value secrets engine v1 at secrets/.
     ```bash
     vault secrets enable -path="secrets" -description="Secret engine for Vsphere Connection" kv
@@ -404,7 +416,9 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
     ```
 
     **Save multiple key-value pairs**
+    
     Create a file named vsphere.json that defines `cluster`, `datacenter`, `esx_datastore`, `esx_host`, `server`, `username` and  `password` fields.
+    
     ```bash
     tee vsphere.json <<EOF
     {
@@ -426,14 +440,15 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
     vault kv put secrets/vmware @vsphere.json
     ```
     
-    **Disable vault command history**
+    **Disable Vault command history**
 
     The option above ensures that the contents of the secret do not appear in the shell history. 
     The secret path would still be accessible through the shell history.
 
     We can configure our shell to avoid logging any `vault` commands to your history.
 
-    In `bash`, set the history to ignore all commands that start with `vault`.
+    In Bash profile, set the history to ignore all commands that start with `vault`.
+    
     ```bash
     cat << EOF | sudo tee -a ~/.profile
     export HISTIGNORE="&:vault*"
@@ -488,12 +503,13 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
      ```
      
      **Image Build with Packer Template**
+     
      With Packer installed, it is time to build our first image.
      
      A Packer template is a configuration file that defines the image you want to build and how to build it. 
      Packer templates use the Hashicorp Configuration Language (HCL).
 
-     View the HCL block in `ubuntu20.pkr.hcl` template in 'packer/ubuntu20` directory.
+     View the HCL block in `ubuntu20.pkr.hcl` template in `packer/ubuntu20` directory.
  
      ```yaml
      local "vcenter_username" {
@@ -613,7 +629,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
                  "sudo touch /etc/cloud/cloud-init.disabled", # Fixing issues with preboot DHCP
                  "sudo apt-get -y purge cloud-init",
                  "sudo sed -i \"s/D /tmp 1777/#D /tmp 1777/\" /usr/lib/tmpfiles.d/tmp.conf",
-[I                 "sudo sed -i \"s/After=/After=dbus.service /\" /lib/systemd/system/open-vm-tools.service",
+                 "sudo sed -i \"s/After=/After=dbus.service /\" /lib/systemd/system/open-vm-tools.service",
                  "sudo rm -rf /etc/machine-id", # next four lines fix same ip address being assigned in vmware
                  "sudo rm -rf /var/lib/dbus/machine-id",
                  "sudo touch /etc/machine-id",
@@ -658,7 +674,8 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
    **Install Terraform**
 
    Ensure that your system is up to date and you have installed the gnupg, software-properties-common, and curl packages installed.
-   You will use these packages to verify HashiCorp's GPG signature and install HashiCorp's Debian package repository.
+   
+   We'll use these packages to verify HashiCorp's GPG signature and install HashiCorp's Debian package repository.
    ```bash
    sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
    ```
@@ -866,33 +883,37 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
     Specify details for your administrator user, then save and continue setup.
  
     When the `Jenkins is ready` page appears, click `Start using Jenkins`
+    
     Notes:
-    -This page may indicate Jenkins is almost ready! instead and if so, click Restart.
-    -If the page does not automatically refresh after a minute, use your web browser to refresh the page manually.
+    - This page may indicate Jenkins is almost ready! instead and if so, click Restart.
+    - If the page does not automatically refresh after a minute, use your web browser to refresh the page manually.
 
 
 4.  **Adding Gogs plugin to Jenkins**
     
     We'll need to extend jenkins functionality with Gogs plugin.
     
-    At Jenkins Dashboard appears, Go to **Manage Jenkins** > **Manage Plugins**
-    Select **Available** tab and search for `gogs`
-    Select box button of available gogs plugin
-    Click on `Download now and install after restart` and select box button `Restart jenkins when installation is complete and no jobs are running`
-    Wait while jenkins is restarting
+    - At Jenkins Dashboard appears, Go to **Manage Jenkins** > **Manage Plugins**
+    - Select **Available** tab and search for `gogs`
+    - Select box button of available gogs plugin
+    - Click on `Download now and install after restart` and select box button `Restart jenkins when installation is complete and no jobs are running`
+    - Wait while jenkins restarts.
     
     
 5.  **Configure credentials**
     
     **Create Vault credentials**
+    
     Login to Jenkins UI
     Go to **Manage Jenkins** > **Manage Credentials**
+    
     Select `Jenkins` store
     Under **System** tab, select `Global credentials(unrestricted)`
+    
     Check left tab and click on `Add Credentials`, then choose the following:
-    - Kind: secret text
+    - Kind: *secret text*
     - Secret: 
-    - ID: vault_token
+    - ID: *vault_token*
     
     Get your ADMIN_TOKEN to fill in `Secret` field
     ```bash
@@ -901,13 +922,16 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
 
     
 6.  **Create SSH credentials in Jenkins**
+    
     Go to **Manage Jenkins** > **Manage Credentials**
+    
     Select `Jenkins` store
     Under **System** tab, select `Global credentials(unrestricted)`
+    
     Check left tab and click on `Add Credentials`, then choose the following:
-    - Kind: SSH Username with private key
-    - ID: id_rsa
-    - Username: odennav
+    - Kind: *SSH Username with private key*
+    - ID: *id_rsa*
+    - Username: *odennav*
 
     Under `Private Key`, select `Enter directly` radio button
     Copy your private key from here:
@@ -919,10 +943,13 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
    
     
 7.  **Add SSH key to Gogs**
+    
     We'll add our public key to Gogs to ensure ssh authentication with Jenkins.
 
     Go to gogs settings page at `http://192.168.149.8:3880/user/settings`  
+    
     Select `SSH Keys` tab and click on `Add Key` on `Manage SSH Keys` tab
+    
     Enter `Key Name` as `id_rsa`
 
     ```bash
@@ -934,22 +961,29 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
 
 8.  **Automate CI/CD Pipeline**
  
-    Go to Jenkins Dashboard and select `New Item` on left tab 
+    Go to Jenkins Dashboard and select `New Item` on left tab.
+
     Enter an item name, select `Freestyle project` and click `OK`
+    
     When `General` setup page appears, scroll down to `Source Code Management` under `Gogs Webhook` tab and select radio button for `Git`
+    
     Fill the `Repository URL` field with:
     ```bash
     ssh://git@192.168.149.7:2222/odennav/on-prem-devops-vsphere.git
     ```
     Select 'odennav' credentials for SSH keys
      
-    Sroll down to `Build Environment` section under the `Build Triggers` tab
+    Scroll down to `Build Environment` section under the `Build Triggers` tab
+    
     Select box button `Use secret text(s) or file(s)`
+    
     Add Binding for `Secret text`, enter variable name as `vault_token` and select credentials previously created `vault_token`
 
 
     Sroll down to `Build Environment` section under the `Build Environment` tab
+    
     Click on `Add build step` drop down and select `Execute shell`
+    
     Fill in the following into `Command` field:
     
     ```bash
@@ -974,7 +1008,9 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
     Click `Save`
 
     The Jenkins dashboard will show your project build just created.
+    
     Select `Build Now` at left tab and the build job will show up under `Build History` section
+    
     Click on this job, select 'Console Output` at left tab and view the build job in real time.
 
 
