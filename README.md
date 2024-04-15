@@ -478,7 +478,7 @@ Automate your Self-hosted vSphere datacenter and deploy a fully load-balanced ap
     Packer is a modular tool built by Hashicorp to create raw VM images and templates.
     It's much more scalable than using a specific hypervisor tool.
     
-    We'll be using Packer to create our VMs.
+    We'll be using Packer to create our VM images.
 
     **Packer Installation**   
    
