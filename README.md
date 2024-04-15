@@ -756,6 +756,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
 6. **ANSIBLE INSTALLATION and MACHINE CONFIGURATION**
    
    **Install Ansible**
+   
    Configure the PPA on your system and install Ansible
    ```bash
    sudo apt update
@@ -863,7 +864,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
       jenkins/jenkins:lts-jdk17 
     ```
 
-2.  **Unlocking Jenkins**
+2.  **Unlock Jenkins**
     
     When you first access a new Jenkins instance, you are asked to unlock it using an automatically-generated password.
 
@@ -878,7 +879,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
    
     After unlocking jenkins, click one of the options: `Install suggested plugins` to install the recommended set of plugins based on most common use cases.
     
-3.  **Creating the first administrator user**
+3.  **Create the First Administrator User**
     
     Finally, after customizing Jenkins with plugins, Jenkins asks you to create your first administrator user.
     Specify details for your administrator user, then save and continue setup.
@@ -890,7 +891,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
     - If the page does not automatically refresh after a minute, use your web browser to refresh the page manually.
 
 
-4.  **Adding Gogs plugin to Jenkins**
+4.  **Add Gogs Plugin to Jenkins**
     
     We'll need to extend jenkins functionality with Gogs plugin.
     
@@ -922,7 +923,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
     ```
 
     
-6.  **Create SSH credentials in Jenkins**
+6.  **Create SSH Credentials in Jenkins**
     
     Go to **Manage Jenkins** > **Manage Credentials**
     
@@ -943,7 +944,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
     
    
     
-7.  **Add SSH key to Gogs**
+7.  **Add SSH Key to Gogs**
     
     We'll add our public key to Gogs to ensure ssh authentication with Jenkins.
 
