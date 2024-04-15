@@ -3,6 +3,7 @@
 
 Automate your Self-hosted vSphere datacenter and deploy a fully load-balanced application with Docker, Gogs, Ansible, Vault, Packer, Terraform and Jenkins.
 
+![](https://github.com/odennav/on-prem-devops-vsphere/blob/main/docs/pipeline.png)
 
 ## Prerequisites
   
@@ -27,7 +28,7 @@ Automate your Self-hosted vSphere datacenter and deploy a fully load-balanced ap
   - Docker Installation
   - Gogs(source control) Installation and Configuration
   - Vault Installation and Configuration
-  - VM Image Build on vSphere with Packer
+  - Packer Installation and Configuration
   - Terraform Installation and VM Deployment 
   - Ansible Installation and Machine Configuration
 
@@ -472,7 +473,7 @@ Automate your Self-hosted vSphere datacenter and deploy a fully load-balanced ap
 
 -----
 
-4.  **VM IMAGE BUILD on vSphere with PACKER**
+4.  **PACKER INSTALLATION and CONFIGURATION**
 
     Packer is a modular tool built by Hashicorp to create raw VM images and templates.
     It's much more scalable than using a specific hypervisor tool.
@@ -970,7 +971,7 @@ Automate your Self-hosted vSphere datacenter and deploy a fully load-balanced ap
     
     Fill the `Repository URL` field with:
     ```bash
-    ssh://git@192.168.149.7:2222/odennav/on-prem-devops-vsphere.git
+    ssh://git@192.168.149.8:2222/odennav/on-prem-devops-vsphere.git
     ```
     Select 'odennav' credentials for SSH keys
      
