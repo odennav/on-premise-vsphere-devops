@@ -1,0 +1,42 @@
+- name: Install NGINX for load balancer
+  hosts: [lb]
+  become: yes
+  vars:
+    backend_servers: "{{groups['ws']}}"
+
+  tasks:
+    - name: Install NGINX
+      apt:
+        name={{ item }}
+        state=latest
+      with_items:
+        - nginx
+        - php-fpm
+        - php-mysql
+
+    - name: Delete default NGINX site in sites available
+      file:
+        path=/etc/nginx/sites-available/default
+        state=absent
+      notify: restart nginx
+
+    - name: Delete default NGINX site in sites enabled
+      file:
+        path=/etc/nginx/sites-enabled/default
+        state=absent
+      notify: restart nginx
+
+    - name: Copy nginx load balancer conf file 
+      template:
+        src=artifacts/nginx_lb.conf.j2
+        dest=/etc/nginx/sites-enabled/{{ domain }}
+        owner=root
+        group=root
+        mode="0644"
+      notify: restart nginx
+
+  handlers:
+    - name: restart nginx
+      service:
+        name=nginx
+        state=restarted

@@ -1,0 +1,10 @@
+- name: Remove Ubuntu default user
+  hosts: all
+
+  tasks:
+    - name: Removing ubuntu user and directories
+      user:
+        name=ubuntu
+        state=absent
+        force=yes
+      become: yes

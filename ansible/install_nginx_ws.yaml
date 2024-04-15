@@ -1,0 +1,56 @@
+- name: Update NGINX to run on servers
+  hosts: [ws]
+  become: yes
+
+  tasks:
+    - name: Install NGINX
+      apt:
+        name={{ item }}
+        state=latest
+      with_items:
+        - nginx
+        - php-fpm
+        - php-mysql
+
+    - name: Create www directory
+      file:
+        path=/var/www/{{ domain }}
+        state=directory
+        mode="0775"
+        owner="{{ansible_user}}"
+        group="{{ansible_user}}"
+
+    - name: Delete default NGINX site in sites available
+      file:
+        path=/etc/nginx/sites-available/default
+        state=absent
+      notify: restart nginx
+
+    - name: Delete default NGINX site in sites enabled
+      file:
+        path=/etc/nginx/sites-enabled/default
+        state=absent
+      notify: restart nginx
+
+    - name: Copy nginx site.conf
+      template:
+        src=artifacts/nginx_ws.conf.j2
+        dest=/etc/nginx/sites-enabled/{{ domain }}
+        owner=root
+        group=root
+        mode="0644"
+      notify: restart nginx
+
+    - name: Copy default index.php file
+      copy:
+        src=artifacts/index.php
+        dest=/var/www/{{ domain }}
+        mode="0775"
+        owner="{{ ansible_user }}"
+        group="{{ ansible_user }}"
+
+  handlers:
+    - name: restart nginx
+      service:
+        name=nginx
+        state=restarted

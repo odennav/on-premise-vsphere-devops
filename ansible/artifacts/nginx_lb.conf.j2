@@ -1,0 +1,15 @@
+upstream backend {
+    least_conn;
+
+    {% for host in backend_servers %}
+    server {{ host }};
+    {% endfor %}
+}
+
+server {
+    listen 80;
+
+    location / {
+        proxy_pass http://backend;
+    }
+}
