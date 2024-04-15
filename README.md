@@ -457,7 +457,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
     ```
 
 -----   
-    **Web UI option to create Secrets Engine**
+    **Web UI option to create Secrets engine**
    
     Access Vault Web UI at `http://192.168.149.7:8200/ui`
     Use Token method and input `Root token value` to login.
@@ -473,7 +473,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
 
 -----
 
-4.  **VM image creation on vSphere with Packer**
+4.  **VM Image Creation on vSphere with Packer**
 
     Packer is a modular tool built by Hashicorp to create raw VM images and templates.
     It's much more scalable than using a specific hypervisor tool.
@@ -764,7 +764,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
    sudo apt install ansible
    ```
 
-   **Run Ansible Playbooks**
+   **Run ansible playbooks**
    
    Bootstrap each web server 
    Default user `ubuntu` used as `remote_user` in `on-prem-devops-vsphere/ansible/ansible.cfg` is not created yet
@@ -777,7 +777,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
    ansible-playbook remove_ubuntu.yaml
    ```
 
-   **Load-balanced application deployment with Ansible**
+   **Load-balanced application deployment with ansible**
    
    Deploy and configure a load-balancer and multiple servers on vSphere VMs in datacenter cluster.
 
@@ -791,7 +791,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
    ansible-playbook install_nginx_lb.yaml
    ```
 
-   **Verify Web server and Load balancer installation**
+   **Verify web server and load balancer installation**
 
    ```bash
    curl <ws01 ipv4 address>:80
@@ -900,7 +900,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
     - Wait while jenkins restarts.
     
     
-5.  **Configure credentials**
+5.  **Configure Credentials**
     
     **Create Vault credentials**
     
@@ -1024,14 +1024,8 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
    **Verify Web server and Load balancer installation**
 
    ```bash
-   curl <ws01 ipv4 address>:80
-   curl <ws02 ipv4 address>:80
-   curl <ws03 ipv4 address>:80
-   ```
-
-   ```bash
    curl <lb01 ipv4 address>:80
-
+   ```
 
 -----
 Enjoy!
