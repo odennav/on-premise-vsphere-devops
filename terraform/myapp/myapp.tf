@@ -88,8 +88,8 @@ resource "vsphere_virtual_machine" "ws" {
     }
 
     provisioner "file" {
-        source = "../../keys/mykey.pub"
-        destination = "/home/ubuntu/mykey.pub"
+        source = "../../keys/id_rsa.pub"
+        destination = "/home/ubuntu/id_rsa.pub"
 
         connection {
             type = "ssh"
@@ -104,10 +104,10 @@ resource "vsphere_virtual_machine" "ws" {
             "sudo mkdir -p /home/ubuntu/.ssh",
             "sudo chmod 700 /home/ubuntu/.ssh",
             "sudo touch /home/ubuntu/.ssh/authorized_keys",
-            "sudo sh -c 'cat /home/ubuntu/mykey.pub > /home/ubuntu/.ssh/authorized_keys'",
+            "sudo sh -c 'cat /home/ubuntu/id_rsa.pub > /home/ubuntu/.ssh/authorized_keys'",
             "sudo chown -R ubuntu: /home/ubuntu/.ssh",
             "sudo chmod -R 644 /home/ubuntu/.ssh/authorized_keys",
-            "sudo rm -rf /home/ubuntu/mykey.pub"
+            "sudo rm -rf /home/ubuntu/id_rsa.pub"
         ]
 
         connection {
@@ -160,8 +160,8 @@ resource "vsphere_virtual_machine" "lb" {
     }
 
     provisioner "file" {
-        source = "../../keys/mykey.pub"
-        destination = "/home/ubuntu/mykey.pub"
+        source = "../../keys/id_rsa.pub"
+        destination = "/home/ubuntu/id_rsa.pub"
 
         connection {
             type = "ssh"
@@ -176,10 +176,10 @@ resource "vsphere_virtual_machine" "lb" {
             "sudo mkdir -p /home/ubuntu/.ssh",
             "sudo chmod 700 /home/ubuntu/.ssh",
             "sudo touch /home/ubuntu/.ssh/authorized_keys",
-            "sudo sh -c 'cat /home/ubuntu/mykey.pub > /home/ubuntu/.ssh/authorized_keys'",
+            "sudo sh -c 'cat /home/ubuntu/id_rsa.pub > /home/ubuntu/.ssh/authorized_keys'",
             "sudo chown -R ubuntu: /home/ubuntu/.ssh",
             "sudo chmod -R 644 /home/ubuntu/.ssh/authorized_keys",
-            "sudo rm -rf /home/ubuntu/mykey.pub"
+            "sudo rm -rf /home/ubuntu/id_rsa.pub"
         ]
 
         connection {
