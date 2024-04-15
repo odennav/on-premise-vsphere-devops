@@ -805,7 +805,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
 
 -----
 
-#  Automated Pipeline
+##  Automated Pipeline
 
 1.  **Jenkins Setup**
 
