@@ -27,15 +27,15 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
   This workflow involves the following steps:
   - Docker Installation
   - Gogs(source control) Installation and Configuration
-  - Vault Setup
-  - VM image creation on vSphere with Packer
+  - Vault Installation and Configuration
+  - VM Image Build on vSphere with Packer
   - Terraform Installation and VM deployment 
   - Ansible Installation and Machine Configuration
 
 
 -----
 
-1.  **Docker Installation**
+1.  **DOCKER INSTALLATION**
 
     To install Docker Engine for the first time on build-machine, we'll set up the Docker repository.
     Afterward, we can install and update Docker from the repository.
@@ -77,7 +77,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
 
 -----
 
-2.  **Gogs Installation and Configuration**
+2.  **GOGS INSTALLATION and CONFIGURATION**
     
     Build a simple, stable and extensible self-hosted Git service.
 
@@ -144,7 +144,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
 
 -----
 
-3. **Vault Setup**
+3. **VAULT INSTALLATION and CONFIGURATION**
 
    Install jq to format the JSON output for vault
    ```bash
@@ -473,7 +473,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
 
 -----
 
-4.  **VM Image Creation on vSphere with Packer**
+4.  **VM IMAGE BUILD on vSphere with PACKER**
 
     Packer is a modular tool built by Hashicorp to create raw VM images and templates.
     It's much more scalable than using a specific hypervisor tool.
@@ -668,7 +668,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
 
 -----
  
-5. **Terraform Installation and VM deployment **
+5. **TERRAFORM INSTALLATION and VM DEPLOYMENT**
 
 
    **Install Terraform**
@@ -753,7 +753,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
 
 -----
 
-6. **Ansible Installation and Machine Configuration**
+6. **ANSIBLE INSTALLATION and MACHINE CONFIGURATION**
    
    **Install Ansible**
    Configure the PPA on your system and install Ansible
