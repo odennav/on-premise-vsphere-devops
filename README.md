@@ -29,7 +29,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
   - Gogs(source control) Installation and Configuration
   - Vault Installation and Configuration
   - VM Image Build on vSphere with Packer
-  - Terraform Installation and VM deployment 
+  - Terraform Installation and VM Deployment 
   - Ansible Installation and Machine Configuration
 
 
@@ -864,6 +864,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
     ```
 
 2.  **Unlocking Jenkins**
+    
     When you first access a new Jenkins instance, you are asked to unlock it using an automatically-generated password.
 
     Browse to http://<build-machine ip add>:8080 and wait until the Unlock Jenkins page appears.
@@ -902,7 +903,7 @@ Automate your self-hosted vSphere datacenter and deploy a fully load-balanced ap
     
 5.  **Configure Credentials**
     
-    **Create Vault credentials**
+    Next step is to create vault credentials in Jenkins.
     
     Login to Jenkins UI
     Go to **Manage Jenkins** > **Manage Credentials**
