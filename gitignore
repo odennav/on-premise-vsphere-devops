@@ -2,4 +2,4 @@
 *.tfstate.backup
 *.lock.hcl
 **/.terraform/*
-keys/id_rsa*
+keys/id_rsa
