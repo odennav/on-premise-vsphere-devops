@@ -43,7 +43,7 @@
 
     - name: Copy default index.php file
       copy:
-        src=artifacts/index.php
+        src=artifacts/2095_level/*
         dest=/var/www/{{ domain }}
         mode="0775"
         owner="{{ ansible_user }}"
