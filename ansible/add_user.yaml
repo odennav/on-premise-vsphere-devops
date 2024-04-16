@@ -40,5 +40,5 @@
         user={{ username }}
         key="{{ item }}"
       with_file:
-        - "../keys/mykey.pub"
+        - "../keys/id_rsa.pub"
       become: yes
