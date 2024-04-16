@@ -992,7 +992,7 @@ Automate your Self-hosted vSphere datacenter and deploy a fully load-balanced ap
     export VAULT_ADDR=http://192.168.149.8:8200"
     export VAULT_TOKEN=$vault_token
     export PACKER_LOG=1
-    cd "./packer/ubuntu20"
+    cd "./packer/"
     /var/jenkins_home/bin/packer init ubuntu20.pkr.hcl
     /var/jenkins_home/bin/packer build -force ubuntu20.pkr.hcl
     export TF_LOG=INFO
