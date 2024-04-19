@@ -463,11 +463,11 @@ Automate your Self-hosted vSphere datacenter and deploy a fully load-balanced ap
   Access Vault Web UI at `http://192.168.149.7:8200/ui`
   Use Token method and input `Root token value` to login.
   
-    - Enable secrets `new engine`, click the `KV` radio button and specify mount `Path`
-    - Click `Enable Engine`
-    - Click `Create secret` and set `Path` for this secret.
-    - Enter key and value as `Secret Data`. You can add multiple key/value pairs.
-    - Click `Save`
+  - Enable secrets `new engine`, click the `KV` radio button and specify mount `Path`
+  - Click `Enable Engine`
+  - Click `Create secret` and set `Path` for this secret.
+  - Enter key and value as `Secret Data`. You can add multiple key/value pairs.
+  - Click `Save`
 
 -----
 
