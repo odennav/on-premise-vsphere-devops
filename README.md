@@ -1027,7 +1027,7 @@ Automate your Self-hosted vSphere datacenter and deploy a fully load-balanced ap
 
    Level website on your browser.
 
-   ![](https://github.com/odennav/on-prem-devops-vsphere/blob/main/docs/2095-level.JPG)
+   ![](https://github.com/odennav/on-prem-devops-vsphere/blob/main/docs/2095-level.jpg)
 
 -----
 Enjoy!
