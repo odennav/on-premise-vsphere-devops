@@ -458,7 +458,7 @@ Automate your Self-hosted vSphere datacenter and deploy a fully load-balanced ap
 
 -----   
     
-    **Web UI option to create Secrets engine**
+  **Web UI option to create Secrets engine**
    
   Access Vault Web UI at `http://192.168.149.7:8200/ui`
   Use Token method and input `Root token value` to login.
@@ -469,11 +469,11 @@ Automate your Self-hosted vSphere datacenter and deploy a fully load-balanced ap
     - Enter key and value as `Secret Data`. You can add multiple key/value pairs.
     - Click `Save`
 
-
+-----
 
 *Please ensure vault remains unsealed until build project is completed*
 
------
+
 
 4.  **PACKER INSTALLATION and CONFIGURATION**
 
