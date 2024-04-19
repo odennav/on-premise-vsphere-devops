@@ -1023,11 +1023,11 @@ Automate your Self-hosted vSphere datacenter and deploy a fully load-balanced ap
     - web03
     - lb01
 
-   **Verify Web server and Load balancer installation**
+   **View website deployed on web servers through load balancer**
 
-   ```bash
-   curl <lb01 ipv4 address>:80
-   ```
+   Level website on your browser.
+
+   ![](https://github.com/odennav/on-prem-devops-vsphere/blob/main/docs/2095-level.JPG)
 
 -----
 Enjoy!
