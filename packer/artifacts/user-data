@@ -1,4 +1,4 @@
-#cloud-config
+#cloud-config for vm-image template
 autoinstall:
     version: 1
     early-commands:
