@@ -459,8 +459,9 @@ Automate your Self-hosted vSphere datacenter and deploy a fully load-balanced ap
 -----   
     **Web UI option to create Secrets engine**
    
-    Access Vault Web UI at `http://192.168.149.7:8200/ui`
-    Use Token method and input `Root token value` to login.
+  Access Vault Web UI at `http://192.168.149.7:8200/ui`
+  Use Token method and input `Root token value` to login.
+  
     - Enable secrets `new engine`, click the `KV` radio button and specify mount `Path`
     - Click `Enable Engine`
     - Click `Create secret` and set `Path` for this secret.
@@ -1023,9 +1024,9 @@ Automate your Self-hosted vSphere datacenter and deploy a fully load-balanced ap
     - web03
     - lb01
 
-   **View website deployed on web servers through load balancer**
+   **Browse website deployed on web servers through load balancer**
 
-   Level website on your browser.
+   View the Level website on your browser.
 
    ![](https://github.com/odennav/on-prem-devops-vsphere/blob/main/docs/2095-level.jpg)
 
