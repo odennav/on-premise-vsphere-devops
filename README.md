@@ -10,9 +10,10 @@ Automate your Self-hosted vSphere datacenter and deploy a fully load-balanced ap
   - Deploy self hosted vSphere datacenter and datacenter cluster with 2 ESXi hosts
   - Enable vSphere HA and vSphere DRS
   - Create datastore cluster and enable Storage DRS
-  - Provision a build machine on 1st ESXi host with Ubuntu 20.04
+  - Deploy vCenter server appliance on ESXi host.
+  - Provision a build-machine on next ESXi host with Ubuntu 20.04
   - Git bash or linux terminal on local machine.
-
+  - Assume IPv4 address of build-machine VM is `192.168.149.8`.
 
 
 # Getting Started
@@ -460,7 +461,7 @@ Automate your Self-hosted vSphere datacenter and deploy a fully load-balanced ap
     
   **Web UI option to create Secrets engine**
    
-  Access Vault Web UI at `http://192.168.149.7:8200/ui`
+  Access Vault Web UI at `http://192.168.149.8:8200/ui`
   Use Token method and input `Root token value` to login.
   
   - Enable secrets `new engine`, click the `KV` radio button and specify mount `Path`
