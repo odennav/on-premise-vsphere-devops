@@ -11,9 +11,9 @@ Automate your Self-hosted vSphere datacenter and deploy a fully load-balanced ap
   - Enable vSphere HA and vSphere DRS
   - Create datastore cluster and enable Storage DRS
   - Deploy vCenter server appliance on ESXi host.
-  - Provision a build-machine on next ESXi host with Ubuntu 20.04
+  - Provision a Build machine on next ESXi host with Ubuntu 20.04
   - Git bash or linux terminal on local machine.
-  - Assume IPv4 address of build-machine VM is `192.168.149.8`
+  - Assume IPv4 address of Build machine VM is `192.168.149.8` and it's hostname is `build-machine`
 
 
 # Getting Started
