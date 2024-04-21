@@ -13,7 +13,7 @@ Automate your Self-hosted vSphere datacenter and deploy a fully load-balanced ap
   - Deploy vCenter server appliance on ESXi host.
   - Provision a build-machine on next ESXi host with Ubuntu 20.04
   - Git bash or linux terminal on local machine.
-  - Assume IPv4 address of build-machine VM is `192.168.149.8`.
+  - Assume IPv4 address of build-machine VM is `192.168.149.8`
 
 
 # Getting Started
