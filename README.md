@@ -796,16 +796,9 @@ Automate your Self-hosted vSphere datacenter and deploy a fully load-balanced ap
    ```
 
    **Verify web server and load balancer installation**
-
-   ```bash
-   curl <ws01 ipv4 address>:80
-   curl <ws02 ipv4 address>:80
-   curl <ws03 ipv4 address>:80
-   ```
-
-   ```bash
-   curl <lb01 ipv4 address>:80
-   ```
+   
+   Make `http` requests to each webserver and the load balancer using `curl`
+   
 
 -----
 
