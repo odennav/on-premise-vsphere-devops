@@ -83,7 +83,7 @@ source "vsphere-iso" "ubuntu20" {
         "root=/dev/sr0 ",
         "initrd=/casper/initrd ",
         "autoinstall ",
-        "ds=nocloud-net;s=http://10.200.30.80:8600/",
+        "ds=nocloud-net;s=http://192.168.*.*:8600/",
         "<enter>"
     ]
     ip_wait_timeout = "20m"
