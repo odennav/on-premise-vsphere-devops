@@ -14,7 +14,8 @@ Automate your Self-hosted vSphere datacenter and deploy a fully load-balanced ap
   - Provision a Build machine on next ESXi host with Ubuntu 20.04
   - Git bash or linux terminal on local machine.
   - Assume IPv4 address of Build machine VM is `192.168.149.8` and it's hostname is `build-machine`
-
+  - Check this VMware datacenter lab [guide](https://github.com/odennav/vmware-sddc-private-cloud)
+  
 
 # Getting Started
 
