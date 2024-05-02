@@ -1,7 +1,7 @@
 
 # On-Prem DevOps with VMware vSphere
 
-Deploy a load-balanced application using VMware vSphere, Docker, Gogs, Ansible, Vault, Packer, Terraform and Jenkins.
+Deploy a load-balanced application using VMware vSphere, Docker, Gogs, Ansible, Vault, Packer, Terraform, Jenkins and Nginx.
 
 ![](https://github.com/odennav/on-prem-devops-vsphere/blob/main/docs/pipeline.png)
 
