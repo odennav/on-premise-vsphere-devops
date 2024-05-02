@@ -7,10 +7,10 @@ Deploy a load-balanced application using VMware vSphere, Docker, Gogs, Ansible, 
 
 ## Prerequisites
   
-  - Deploy self hosted vSphere datacenter and compute cluster with 2 ESXi hosts
-  - Enable vSAN, DRS and SDRS
+  - Deploy self hosted vSphere datacenter and compute cluster with 2 ESXi hosts.
+  - Enable vSAN, DRS and SDRS.
   - Deploy vCenter server appliance on ESXi host.
-  - Provision a Build machine on next ESXi host with Ubuntu 20.04
+  - Provision a Build machine on next ESXi host with Ubuntu 20.04 server.
   - Git bash or linux terminal on local machine.
   - Assume IPv4 address of Build machine VM is `192.168.149.8` and it's hostname is `build-machine`
   - Check this VMware datacenter lab [guide](https://github.com/odennav/vmware-sddc-private-cloud)
