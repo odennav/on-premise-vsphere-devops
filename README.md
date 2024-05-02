@@ -1,7 +1,7 @@
 
 # On-Prem DevOps with VMware vSphere
 
-Automate your Self-hosted vSphere datacenter and deploy a fully load-balanced application using Docker, Gogs, Ansible, Vault, Packer, Terraform and Jenkins.
+Deploy a load-balanced application using VMware vSphere, Docker, Gogs, Ansible, Vault, Packer, Terraform and Jenkins.
 
 ![](https://github.com/odennav/on-prem-devops-vsphere/blob/main/docs/pipeline.png)
 
