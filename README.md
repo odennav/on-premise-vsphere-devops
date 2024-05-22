@@ -919,7 +919,7 @@ Deploy a load-balanced application using VMware vSphere, Docker, Gogs, Ansible, 
     ```
 
     
-6.  **Create SSH Credentials in Jenkins**
+6.  **Add Private Key as Gogs Credential to Jenkins**
     
     Go to **Manage Jenkins** > **Manage Credentials**
     
@@ -940,7 +940,7 @@ Deploy a load-balanced application using VMware vSphere, Docker, Gogs, Ansible, 
     
    
     
-7.  **Add SSH Key to Gogs**
+7.  **Add Public SSH Key to Gogs Server**
     
     We'll add our public key to Gogs to ensure ssh authentication with Jenkins.
 
