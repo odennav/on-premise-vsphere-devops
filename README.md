@@ -748,10 +748,21 @@ Deploy a load-balanced application using VMware vSphere, Docker, Gogs, Ansible, 
    terraform apply
    ```
  
-   Note, the ansible inventory is built dynamically by terraform with resource `"local_file" "ansible_inventory"` shown below 
+   Note, the ansible inventory is built dynamically by terraform using the resource `"local_file" "ansible_inventory"` in the `myapp.tf` file.  
    
    
-   Here is the .tpl terraform trmplate code for logical groupings
+   Here is the `.tpl` terraform template code for the logical groupings.
+   ```text
+   [lb]
+   %{ for ip in lb_ip ~}
+   ${ip} domain=odennav.com
+   %{ endfor ~}
+
+   [ws]
+   %{ for ip in ws_ip ~}
+   ${ip} domain=odennav.com
+   %{ endfor ~}
+   ```
 
 
 -----
