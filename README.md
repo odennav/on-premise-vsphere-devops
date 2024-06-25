@@ -153,16 +153,12 @@ Deploy a load-balanced application using VMware vSphere, Docker, Gogs, Ansible, 
    ```
 
    Secure, store, and tightly control access to tokens, passwords, certificates, and encryption keys in modern computing.
-   Protects secrets and other sensitive data using a UI, CLI, or HTTP API.
    
     Create the vault to generate unseal and root tokens. 
     Unseal the vault. 
       - 5 Unseal keys are created upon a vault initialization.
       -	3 Unseal keys are required to unseal the vault.	
-    Push secure credentials and store.`
-    Pull secure credentials through an API for an app at runtime.
-
-    
+      
     Install the HashiCorp GPG key, verify the key's fingerprint, and install Vault.
     
     Update the package manager and install GPG and wget.
@@ -424,7 +420,7 @@ Deploy a load-balanced application using VMware vSphere, Docker, Gogs, Ansible, 
     tee vsphere.json <<EOF
     {
       "username": "administrator@vsphere.local",
-      "password": "Lioness123@#"
+      "password": "**********"
       "server": "vcenter-II",
       "datacenter": "odennav-labs",
       "cluster": "odennav-labs-cluster",
@@ -436,7 +432,7 @@ Deploy a load-balanced application using VMware vSphere, Docker, Gogs, Ansible, 
 
     **Create new secrets**
     
-    Create a secret at path secrets/vmware with keys and values defined in vsphere.json.    
+    Create a secret at path secrets/vmware with keys and values defined in `vsphere.json`.    
     ```bash
     vault kv put secrets/vmware @vsphere.json
     ```
@@ -510,7 +506,6 @@ Deploy a load-balanced application using VMware vSphere, Docker, Gogs, Ansible, 
      With Packer installed, it is time to build our first image.
      
      A Packer template is a configuration file that defines the image you want to build and how to build it. 
-     Packer templates use the Hashicorp Configuration Language (HCL).
 
      View the HCL block in `ubuntu20.pkr.hcl` template in `packer/ubuntu20` directory.
  
@@ -642,8 +637,7 @@ Deploy a load-balanced application using VMware vSphere, Docker, Gogs, Ansible, 
      }     
      ```
 
-     Note the cloud config boot file in `packer/ubuntu20/artifacts/user-data` 
-     View autoinstall configuration in `user-data`
+     Note the cloud config boot file, `packer/artifacts/user-data` and the autoinstall configuration in it.
 
  
      Initialize your Packer configuration
@@ -875,7 +869,7 @@ Deploy a load-balanced application using VMware vSphere, Docker, Gogs, Ansible, 
     
     When you first access a new Jenkins instance, you are asked to unlock it using an automatically-generated password.
 
-    Browse to http://<build-machine ip add>:8080 and wait until the Unlock Jenkins page appears.
+    Browse to `http://192.168.149.8:8080` and wait until the Unlock Jenkins page appears.
     
     Discover `Administrator password` to unlock jenkins
     Copy and paste password into setup wizard
@@ -980,7 +974,7 @@ Deploy a load-balanced application using VMware vSphere, Docker, Gogs, Ansible, 
     ```bash
     ssh://git@192.168.149.8:2222/odennav/on-prem-devops-vsphere.git
     ```
-    Select 'odennav' credentials for SSH keys
+    Select `odennav` credentials for SSH keys
      
     Scroll down to `Build Environment` section under the `Build Triggers` tab
     
@@ -1020,7 +1014,7 @@ Deploy a load-balanced application using VMware vSphere, Docker, Gogs, Ansible, 
     
     Select `Build Now` at left tab and the build job will show up under `Build History` section
     
-    Click on this job, select 'Console Output` at left tab and view the build job in real time.
+    Click on this job, select `Console Output` at left tab and view the build job in real time.
 
 
     When build job is completed, check the vSphere datacenter and confirm the following are deployed:
